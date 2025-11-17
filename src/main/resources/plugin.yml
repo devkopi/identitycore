@@ -1,0 +1,34 @@
+name: IdentityCore
+version: '1.0'
+main: org.ccoding.identitycore.IdentityCore
+api-version: '1.21'
+description: Un plugin para cambiar tu identidad en Minecraft
+author: ccoding
+
+commands:
+  identitycore:
+    description: Comando principal de IdentityCore
+    usage: /identitycore [help|reload]
+    permission: identitycore.help
+  nick:
+    description: Cambia tu nombre visible en el servidor
+    usage: /nick <nick|help|restore>
+    permission: identitycore.nick
+
+permissions:
+  identitycore.*:
+    description: Acceso a todos los comandos de IdentityCore
+    default: op
+    children:
+      identitycore.help: true
+      identitycore.nick: true
+      identitycore.admin: true
+  identitycore.help:
+    description: Permite ver la ayuda
+    default: true
+  identitycore.nick:
+    description: Permite usar el comando /nick
+    default: false
+  identitycore.admin:
+    description: Permisos administrativos (reload)
+    default: op

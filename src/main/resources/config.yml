@@ -1,0 +1,38 @@
+# =============================================
+# IdentityCore - Configuración del Plugin
+# =============================================
+
+# Prefix que aparece en todos los mensajes del plugin
+prefix: "&8[&eIdentityCore&8] &7"
+
+# =============================================
+# SISTEMA DE PERMISOS
+# =============================================
+#
+# identitycore.*      - Acceso completo (default: op)
+# identitycore.help   - Ver ayuda (default: true)
+# identitycore.nick   - Usar /nick (default: false - SOLO VIPs)
+# identitycore.admin  - Permisos admin (default: op)
+#
+# "default: true" -> Indica que cualquier usuario puede acceder a él SIN TENER OP.
+# "default: op" -> Indica que el usuario que tenga acceso a OP podrá acceder a esos comandos.
+#
+# =============================================
+# MENSAJES DEL PLUGIN
+# =============================================
+messages:
+  # Mensajes generales
+  no-permission: "&cNo tienes permiso para usar este comando."
+  only-players: "&cEste comando solo puede ser usado por jugadores."
+  reload-success: "&aConfiguración recargada correctamente."
+
+  # ===========================================
+  # MENSAJES DEL COMANDO /NICK
+  # ===========================================
+  # %nick% = El nuevo nick que el jugador eligió
+  # %name% = El nombre real/original del jugador
+  nick-changed: "&aTu nick ha sido cambiado a: &e%nick%"
+  nick-restored: "&aTu nombre ha sido restaurado a: &e%name%"
+  nick-invalid: "&cEl nick solo puede contener letras, números y guiones bajos."
+  nick-too-long: "&cEl nick es demasiado largo (máximo 10 caracteres)."
+  nick-too-short: "&cEl nick es demasiado corto (mínimo 3 caracteres)."
