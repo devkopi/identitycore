@@ -8,6 +8,9 @@ import org.ccoding.identitycore.IdentityCore;
 import org.ccoding.identitycore.utils.MessageUtils;
 import org.jetbrains.annotations.NotNull;
 
+// Importamos el TabModule
+import org.ccoding.identitycore.modules.tab.TabModule;
+
 public class NickCommand implements CommandExecutor {
 
     @Override
@@ -73,6 +76,9 @@ public class NickCommand implements CommandExecutor {
         IdentityCore.getInstance().getNickManager().setNick(player, nick);
         MessageUtils.sendMessage(player, "nick-changed", "%nick%", nick);
 
+        // Actualizar TabModule
+        updateTabModule(player);
+
         player.sendMessage("§7Ahora tu nombre aparecerá como: §e" + nick + " §7en el chat");
     }
 
@@ -80,7 +86,23 @@ public class NickCommand implements CommandExecutor {
         IdentityCore.getInstance().getNickManager().restoreOriginalName(player);
         MessageUtils.sendMessage(player, "nick-restored", "%name%", player.getName());
 
+        // Actualizar TabModule
+        updateTabModule(player);
+
         player.sendMessage("§7Ahora tu nombre aparecerá como: §e" + player.getName() + " §7en el chat");
+    }
+
+    private void updateTabModule(Player player) {
+        try {
+            TabModule tabModule = (TabModule) IdentityCore.getInstance().getModule("TabModule");
+
+            if (tabModule != null && tabModule.isEnabled()) {
+                tabModule.updatePlayerTabName(player);
+                IdentityCore.getInstance().getLogger().info("TabModule actualizado para: " + player.getName());
+            }
+        } catch (Exception e) {
+            IdentityCore.getInstance().getLogger().warning("No se pudo actaulizar TabModule: " + e.getMessage());
+        }
     }
 
     private boolean isValidNick(String nick) {
