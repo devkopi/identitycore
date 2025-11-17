@@ -17,7 +17,7 @@ public class IdentityCore extends JavaPlugin {
     private Map<String, Module> modules;
     private NickManager nickManager;
 
-    // ✅ REGISTRAR COMANDOS EN onLoad() en lugar de onEnable()
+    //  REGISTRAR COMANDOS EN onLoad() en lugar de onEnable()
     @Override
     public void onLoad() {
         // Los comandos se registran automáticamente desde plugin.yml
@@ -32,7 +32,7 @@ public class IdentityCore extends JavaPlugin {
         // Cargar configuración
         saveDefaultConfig();
 
-        // ✅ REGISTRAR EXECUTORS después de que todo esté listo
+        //  REGISTRAR EXECUTORS después de que todo esté listo
         registerCommandExecutors();
 
         // Inicializar NickManager
@@ -41,8 +41,10 @@ public class IdentityCore extends JavaPlugin {
         // Inicializar sistema de módulos
         initializeModules();
 
+
+
         getLogger().info("¡IdentityCore ha sido activado correctamente!");
-        getLogger().info("Versión: " + getDescription().getVersion());
+        getLogger().info("Version: 1.0");
     }
 
     @Override
@@ -70,7 +72,7 @@ public class IdentityCore extends JavaPlugin {
         // Activar módulos
         modules.values().forEach(Module::enable);
 
-        getLogger().info("Módulos cargados: " + modules.size());
+        getLogger().info("Modulos cargados: " + modules.size());
     }
 
     private void registerModule(Module module) {
@@ -79,7 +81,7 @@ public class IdentityCore extends JavaPlugin {
 
     private void registerCommandExecutors() {
         try {
-            // ✅ Solo establecer los executors, no registrar los comandos
+            //  Solo establecer los executors, no registrar los comandos
             if (getCommand("identitycore") != null) {
                 getCommand("identitycore").setExecutor(new IdentityCoreCommand());
             }
@@ -99,5 +101,14 @@ public class IdentityCore extends JavaPlugin {
 
     public static IdentityCore getInstance() {
         return instance;
+    }
+
+    // Obtener un módulo por nombre
+
+    public Module getModule(String name) {
+        if (modules != null) {
+            return modules.get(name);
+        }
+        return null;
     }
 }
