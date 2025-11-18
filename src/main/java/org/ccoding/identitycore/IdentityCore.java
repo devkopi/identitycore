@@ -2,6 +2,7 @@ package org.ccoding.identitycore;
 
 import org.ccoding.identitycore.commands.IdentityCoreCommand;
 import org.ccoding.identitycore.commands.NickCommand;
+import org.ccoding.identitycore.listeners.ColorListener;
 import org.ccoding.identitycore.managers.NickManager;
 import org.ccoding.identitycore.modules.Module;
 import org.ccoding.identitycore.modules.chat.ChatModule;
@@ -34,6 +35,9 @@ public class IdentityCore extends JavaPlugin {
 
         //  REGISTRAR EXECUTORS después de que todo esté listo
         registerCommandExecutors();
+
+        // Registrar listeners
+        registerListeners();
 
         // Inicializar NickManager
         this.nickManager = new NickManager(this);
@@ -81,6 +85,7 @@ public class IdentityCore extends JavaPlugin {
 
     private void registerCommandExecutors() {
         try {
+            getServer().getPluginManager().registerEvents(new ColorListener(), this);
             //  Solo establecer los executors, no registrar los comandos
             if (getCommand("identitycore") != null) {
                 getCommand("identitycore").setExecutor(new IdentityCoreCommand());
@@ -101,6 +106,17 @@ public class IdentityCore extends JavaPlugin {
 
     public static IdentityCore getInstance() {
         return instance;
+    }
+
+
+    // Registro de listeners
+    private void registerListeners() {
+        try {
+            getServer().getPluginManager().registerEvents(new ColorListener(), this);
+            getLogger().info("Listeners registrados correctamente");
+        } catch (Exception e) {
+            getLogger().severe("Error registrando listeners: " + e.getMessage());
+        }
     }
 
     // Obtener un módulo por nombre
