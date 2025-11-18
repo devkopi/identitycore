@@ -44,7 +44,7 @@ public class ChatModule implements Module, Listener {
 
         var player = event.getPlayer();
         String originalName = player.getName();
-        String displayName = plugin.getNickManager().getDisplayName(player);
+        String displayName = plugin.getNickManager().getColoredDisplayName(player);
 
         if (!originalName.equals(displayName)) {
             Component originalMessage = event.message();

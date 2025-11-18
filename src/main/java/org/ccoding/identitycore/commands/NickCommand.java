@@ -5,6 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.ccoding.identitycore.IdentityCore;
+import org.ccoding.identitycore.menus.ColorMenu;
 import org.ccoding.identitycore.utils.MessageUtils;
 import org.jetbrains.annotations.NotNull;
 
@@ -42,6 +43,10 @@ public class NickCommand implements CommandExecutor {
                 restoreNick(player);
                 break;
 
+            case "settings":
+                openColorMenu(player);
+                break;
+
             default:
                 setNick(player, args[0]);
                 break;
@@ -63,7 +68,7 @@ public class NickCommand implements CommandExecutor {
             return;
         }
 
-        if (nick.length() > 10) {
+        if (nick.length() > 16) {
             MessageUtils.sendMessage(player, "nick-too-long");
             return;
         }
@@ -98,11 +103,17 @@ public class NickCommand implements CommandExecutor {
 
             if (tabModule != null && tabModule.isEnabled()) {
                 tabModule.updatePlayerTabName(player);
-                IdentityCore.getInstance().getLogger().info("TabModule actualizado para: " + player.getName());
             }
         } catch (Exception e) {
             IdentityCore.getInstance().getLogger().warning("No se pudo actaulizar TabModule: " + e.getMessage());
         }
+    }
+
+    private void openColorMenu(Player player) {
+        // Abrir el menú de colores
+        ColorMenu colorMenu = new ColorMenu(player);
+
+        colorMenu.openColorMenu();
     }
 
     private boolean isValidNick(String nick) {

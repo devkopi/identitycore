@@ -59,8 +59,9 @@ public class TabModule implements Module, Listener {
     public void updatePlayerTabName(Player player) {
         if (!enabled) return;
 
-        String displayName = plugin.getNickManager().getDisplayName(player);
-        Component tabName = Component.text(displayName).color(NamedTextColor.WHITE);
+        String displayName = plugin.getNickManager().getColoredDisplayName(player);
+        Component tabName = net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer.legacyAmpersand()
+                .deserialize(displayName);
         player.playerListName(tabName);
     }
 
