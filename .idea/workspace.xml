@@ -6,11 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="dd96c2b8-1f52-4ad5-a49e-6fd212f17688" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/IdentityCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/IdentityCore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/commands/NickCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/commands/NickCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/listeners/ColorListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/listeners/ColorListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/managers/NickManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/managers/NickManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/menus/AdvancedEditorMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/menus/AdvancedEditorMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/menus/ColorMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/menus/ColorMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -59,16 +58,12 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="feature/advanced-editor" />
-                    <option name="lastUsedInstant" value="1763479443" />
+                    <option name="branchName" value="feature/permission-system" />
+                    <option name="lastUsedInstant" value="1763613820" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="main" />
                     <option name="lastUsedInstant" value="1763430613" />
-                  </RecentBranch>
-                  <RecentBranch>
-                    <option name="branchName" value="feature/menu-v1" />
-                    <option name="lastUsedInstant" value="1763430506" />
                   </RecentBranch>
                 </list>
               </option>
@@ -102,7 +97,7 @@
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/advanced-editor&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/permission-system&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,

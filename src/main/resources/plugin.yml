@@ -41,6 +41,10 @@ permissions:
   identitycore.command.nick:
     description: Permite usar el comando /nick
     default: false
+  # Menú básico
+  identitycore.menu.basic:
+    description: Permite usar el menú básico de colores (/nick settings)
+    default: false
 
   # Menú avanzado
   identitycore.advanced:

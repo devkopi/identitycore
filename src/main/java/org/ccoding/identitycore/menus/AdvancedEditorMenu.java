@@ -10,6 +10,7 @@ import org.ccoding.identitycore.IdentityCore;
 import org.ccoding.identitycore.utils.MessageUtils;
 import java.util.Arrays;
 import java.util.UUID;
+import org.ccoding.identitycore.utils.PermissionUtils;
 
 public class AdvancedEditorMenu {
 
@@ -22,6 +23,12 @@ public class AdvancedEditorMenu {
     }
 
     public void openAdvancedEditor() {
+
+        // Verificar permiso antes de abrir el menú
+        if (!PermissionUtils.canUseAdvancedMenu(player)){
+            player.sendMessage(org.ccoding.identitycore.utils.MessageUtils.formatColors("&cNo tienes permiso para usar el editor avanzado."));
+            return;
+        }
 
         Inventory menu = Bukkit.createInventory(null, 54,
                 MessageUtils.formatColors("&8Editor Avanzado de Nick"));
