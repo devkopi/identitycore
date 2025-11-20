@@ -9,22 +9,152 @@ commands:
   identitycore:
     description: Comando principal de IdentityCore
     usage: /identitycore [help|reload]
-    permission: identitycore.help
+    aliases: [ic]
   nick:
     description: Cambia tu nombre visible en el servidor
-    usage: /nick <nick|help|restore>
-    permission: identitycore.nick
+    usage: /nick <nick|help|restore|settings|advanced>
+    aliases: [nickname]
 
 permissions:
+  # Permiso maestro - acceso total
   identitycore.*:
-    description: Acceso a todos los comandos de IdentityCore
+    description: Acceso completo a todas las funciones
+    children:
+      identitycore.command.*: true
+      identitycore.color.*: true
+      identitycore.format.*: true
+      identitycore.advanced: true
+      identitycore.admin: true
     default: op
-  identitycore.help:
-    description: Permite ver la ayuda
+
+  # Sistema de comandos
+  identitycore.command.*:
+    description: Acceso a todos los comandos
+    children:
+      identitycore.command.help: true
+      identitycore.command.nick: true
+
+  identitycore.command.help:
+    description: Permite ver la ayuda del plugin
     default: true
-  identitycore.nick:
+
+  identitycore.command.nick:
     description: Permite usar el comando /nick
     default: false
+
+  # Menú avanzado
+  identitycore.advanced:
+    description: Acceso al editor avanzado de nicks
+    default: false
+
+  # Sistema de colores básicos
+  identitycore.color.*:
+    description: Acceso a todos los colores básicos
+    children:
+      identitycore.color.black: true
+      identitycore.color.dark_blue: true
+      identitycore.color.dark_green: true
+      identitycore.color.dark_aqua: true
+      identitycore.color.dark_red: true
+      identitycore.color.dark_purple: true
+      identitycore.color.gold: true
+      identitycore.color.gray: true
+      identitycore.color.dark_gray: true
+      identitycore.color.blue: true
+      identitycore.color.green: true
+      identitycore.color.aqua: true
+      identitycore.color.red: true
+      identitycore.color.light_purple: true
+      identitycore.color.yellow: true
+      identitycore.color.white: true
+
+  # Permisos individuales de colores
+  identitycore.color.black:
+    description: Permite usar color negro
+    default: false
+  identitycore.color.dark_blue:
+    description: Permite usar color azul oscuro
+    default: false
+  identitycore.color.dark_green:
+    description: Permite usar color verde oscuro
+    default: false
+  identitycore.color.dark_aqua:
+    description: Permite usar color aqua oscuro
+    default: false
+  identitycore.color.dark_red:
+    description: Permite usar color rojo oscuro
+    default: false
+  identitycore.color.dark_purple:
+    description: Permite usar color morado oscuro
+    default: false
+  identitycore.color.gold:
+    description: Permite usar color oro
+    default: false
+  identitycore.color.gray:
+    description: Permite usar color gris
+    default: false
+  identitycore.color.dark_gray:
+    description: Permite usar color gris oscuro
+    default: false
+  identitycore.color.blue:
+    description: Permite usar color azul
+    default: false
+  identitycore.color.green:
+    description: Permite usar color verde
+    default: false
+  identitycore.color.aqua:
+    description: Permite usar color aqua
+    default: false
+  identitycore.color.red:
+    description: Permite usar color rojo
+    default: false
+  identitycore.color.light_purple:
+    description: Permite usar color morado claro
+    default: false
+  identitycore.color.yellow:
+    description: Permite usar color amarillo
+    default: false
+  identitycore.color.white:
+    description: Permite usar color blanco
+    default: false
+
+  # Sistema de formatos
+  identitycore.format.*:
+    description: Acceso a todos los formatos
+    children:
+      identitycore.format.bold: true
+      identitycore.format.italic: true
+      identitycore.format.underline: true
+      identitycore.format.strikethrough: true
+      identitycore.format.magic: true
+      identitycore.format.reset: true
+
+  identitycore.format.bold:
+    description: Permite usar formato negrita
+    default: false
+  identitycore.format.italic:
+    description: Permite usar formato itálica
+    default: false
+  identitycore.format.underline:
+    description: Permite usar formato subrayado
+    default: false
+  identitycore.format.strikethrough:
+    description: Permite usar formato tachado
+    default: false
+  identitycore.format.magic:
+    description: Permite usar formato mágico
+    default: false
+  identitycore.format.reset:
+    description: Permite usar formato reset
+    default: false
+
+  # Permisos administrativos
   identitycore.admin:
-    description: Permisos administrativos (reload)
+    description: Permisos administrativos completos
+    children:
+      identitycore.admin.reload: true
+    default: op
+
+  identitycore.admin.reload:
+    description: Permite recargar la configuracion
     default: op
