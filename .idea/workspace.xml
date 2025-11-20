@@ -5,16 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd96c2b8-1f52-4ad5-a49e-6fd212f17688" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/IdentityCore.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/IdentityCore.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/commands/NickCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/commands/NickCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/listeners/ColorListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/listeners/ColorListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/managers/NickManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/managers/NickManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/modules/chat/ChatModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/modules/chat/ChatModule.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/modules/tab/TabModule.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/modules/tab/TabModule.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/menus/ColorMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/menus/ColorMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +59,10 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
+                    <option name="branchName" value="feature/advanced-editor" />
+                    <option name="lastUsedInstant" value="1763479443" />
+                  </RecentBranch>
+                  <RecentBranch>
                     <option name="branchName" value="main" />
                     <option name="lastUsedInstant" value="1763430613" />
                   </RecentBranch>
@@ -83,25 +84,32 @@
   &quot;associatedIndex&quot;: 5
 }</component>
   <component name="ProjectId" id="35chutzgurNihdqD7hUvKJIU97a" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
-    "ignore.virus.scanning.warn.message": "true",
-    "junie.onboarding.icon.badge.shown": "true",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/santi/IdeaProjects/IdentityCore",
-    "to.speed.mode.migration.done": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/advanced-editor&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/santi/IdeaProjects/IdentityCore&quot;,
+    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="dd96c2b8-1f52-4ad5-a49e-6fd212f17688" name="Changes" comment="" />
@@ -111,5 +119,16 @@
       <updated>1763415492554</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/utils/ColorUtils.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

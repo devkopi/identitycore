@@ -8,6 +8,7 @@ import org.ccoding.identitycore.modules.Module;
 import org.ccoding.identitycore.modules.chat.ChatModule;
 import org.ccoding.identitycore.modules.tab.TabModule;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.ccoding.identitycore.listeners.AdvancedEditorListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -17,6 +18,7 @@ public class IdentityCore extends JavaPlugin {
     private static IdentityCore instance;
     private Map<String, Module> modules;
     private NickManager nickManager;
+    private AdvancedEditorListener advancedEditorListener;
 
     //  REGISTRAR COMANDOS EN onLoad() en lugar de onEnable()
     @Override
@@ -113,10 +115,17 @@ public class IdentityCore extends JavaPlugin {
     private void registerListeners() {
         try {
             getServer().getPluginManager().registerEvents(new ColorListener(), this);
+            this.advancedEditorListener = new AdvancedEditorListener();
+            getServer().getPluginManager().registerEvents(new AdvancedEditorListener(), this);
             getLogger().info("Listeners registrados correctamente");
         } catch (Exception e) {
             getLogger().severe("Error registrando listeners: " + e.getMessage());
         }
+    }
+
+    // Getter
+    public AdvancedEditorListener getAdvancedEditorListener() {
+        return advancedEditorListener;
     }
 
     // Obtener un módulo por nombre

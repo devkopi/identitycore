@@ -56,7 +56,7 @@ public class NickManager {
                     currentNicks.put(uuid, currentNick);
                 }
                 if (playerColor != null) {
-                   playerColors.put(uuid, playerColor);
+                    playerColors.put(uuid, playerColor);
                 }
                 if (playerFormat != null) {
                     playerFormats.put(uuid, playerFormat);
@@ -122,7 +122,7 @@ public class NickManager {
             if (currentNick != null) {
                 currentNicks.put(uuid, currentNick);
             }
-            if (playerColor != null ) {
+            if (playerColor != null) {
                 playerColors.put(uuid, playerColor);
             }
             if (playerFormat != null) {
@@ -137,7 +137,7 @@ public class NickManager {
 
         // Guardar configuraciones
         if (color != null) {
-           playerColors.put(uuid, color);
+            playerColors.put(uuid, color);
         }
         if (format != null) {
             playerFormats.put(uuid, format);
@@ -146,19 +146,27 @@ public class NickManager {
         savePlayerData(uuid);
     }
 
-    // Obtener nick con colores aplicados
+
+    // Obtener nick con colores aplicados (funciona para ambos sistemas)
     public String getColoredDisplayName(Player player) {
         UUID uuid = player.getUniqueId();
         String baseNick = currentNicks.getOrDefault(uuid, player.getName());
 
-        // Aplicar color y formato si existen
+        // PRIMERO: Si el nick tiene códigos & (editor avanzado), procesarlos
+        if (baseNick != null && baseNick.contains("&")) {
+            return org.ccoding.identitycore.utils.MessageUtils.formatColors(baseNick);
+        }
+
+        // SEGUNDO: Si no, aplicar color único (sistema normal)
         String color = playerColors.get(uuid);
         String format = playerFormats.get(uuid);
 
         if (color != null || format != null) {
-            return (color != null ? color : "") + (format != null ? format: "") + baseNick;
+            String coloredNick = (color != null ? color : "") + (format != null ? format : "") + baseNick;
+            return org.ccoding.identitycore.utils.MessageUtils.formatColors(coloredNick);
         }
 
+        // TERCERO: Si no hay nada, devolver base sin formato
         return baseNick;
     }
 
@@ -170,6 +178,29 @@ public class NickManager {
     // Obtener la configuración de formato del jugador
     public String getPlayerFormat(Player player) {
         return playerFormats.get(player.getUniqueId());
+    }
+
+    /**
+     * Guarda un nick con códigos de color avanzados
+     */
+    public void setAdvancedNick(Player player, String coloredNick) {
+        UUID uuid = player.getUniqueId();
+
+        if (!originalNames.containsKey(uuid)) {
+            originalNames.put(uuid, player.getName());
+        }
+
+        // Guardar el nick con códigos de color incluidos
+        currentNicks.put(uuid, coloredNick);
+        savePlayerData(uuid);
+    }
+
+    public HashMap<UUID, String> getPlayerColors() {
+        return playerColors;
+    }
+
+    public HashMap<UUID, String> getPlayerFormats() {
+        return playerFormats;
     }
 
     private void savePlayerData(UUID uuid) {
