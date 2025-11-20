@@ -11,6 +11,8 @@ import org.jetbrains.annotations.NotNull;
 
 // Importamos el TabModule
 import org.ccoding.identitycore.modules.tab.TabModule;
+import org.ccoding.identitycore.menus.AdvancedEditorMenu;
+import org.ccoding.identitycore.listeners.AdvancedEditorListener;
 
 public class NickCommand implements CommandExecutor {
 
@@ -45,6 +47,10 @@ public class NickCommand implements CommandExecutor {
 
             case "settings":
                 openColorMenu(player);
+                break;
+
+            case "advanced":
+                openAdvancedEditor(player);
                 break;
 
             default:
@@ -114,6 +120,20 @@ public class NickCommand implements CommandExecutor {
         ColorMenu colorMenu = new ColorMenu(player);
 
         colorMenu.openColorMenu();
+    }
+
+    private void openAdvancedEditor(Player player) {
+        if (!player.hasPermission("identitycore.advanced")) {
+            MessageUtils.sendMessage(player, "no-permission");
+            return;
+        }
+
+        // Abrir el menú de editor avanzado
+        AdvancedEditorMenu advancedMenu = new AdvancedEditorMenu(player);
+        advancedMenu.openAdvancedEditor();
+
+        // Registrar en el listener
+        IdentityCore.getInstance().getAdvancedEditorListener().registerEditor(player, advancedMenu);
     }
 
     private boolean isValidNick(String nick) {

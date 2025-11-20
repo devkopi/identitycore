@@ -49,6 +49,12 @@ public class ColorListener implements Listener {
                 player.closeInventory();
                 player.sendMessage(MessageUtils.formatColors("&cMenú cerrado"));
                 break;
+            case 53:
+                player.closeInventory();
+                org.ccoding.identitycore.menus.AdvancedEditorMenu advancedMenu =
+                        new org.ccoding.identitycore.menus.AdvancedEditorMenu(player);
+                advancedMenu.openAdvancedEditor();
+                break;
             default:
                 processColorOrFormatSelection(player, itemName, slot);
                 break;

@@ -19,10 +19,6 @@ permissions:
   identitycore.*:
     description: Acceso a todos los comandos de IdentityCore
     default: op
-    children:
-      identitycore.help: true
-      identitycore.nick: true
-      identitycore.admin: true
   identitycore.help:
     description: Permite ver la ayuda
     default: true

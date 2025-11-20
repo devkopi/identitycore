@@ -30,6 +30,7 @@ public class ColorMenu {
         setupNavigation(menu);
         setupColors(menu);
         setupPreview(menu);
+        setupAdvancedButton(menu);
         setupCloseButton(menu);
         player.openInventory(menu);
     }
@@ -151,6 +152,22 @@ public class ColorMenu {
                 Arrays.asList("&7Este es cómo se verá", "&7tu nick con los estilos", "&7seleccionados"));
         menu.setItem(4, previewItem);
     }
+
+    /**
+     * Configura el botón de editor avanzado
+     */
+    private void setupAdvancedButton(Inventory menu) {
+        if (player.hasPermission("identitycore.advanced")) {
+            ItemStack advancedBtn = createItem(Material.WRITABLE_BOOK, "&6Editor Avanzado",
+                    Arrays.asList("&7Haz click para abrir",
+                            "&7el editor avanzado",
+                            "&r",
+                            "&c⚠ &eAdvertencia: &7Al usar colores avanzados,",
+                            "&7el color único del menú básico se desactivará"));
+            menu.setItem(53, advancedBtn);
+        }
+    }
+
 
     private void setupCloseButton(Inventory menu) {
         ItemStack closeBtn = createItem(Material.BARRIER, "&cCerrar Menu",
