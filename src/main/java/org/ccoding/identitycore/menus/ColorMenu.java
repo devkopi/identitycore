@@ -9,6 +9,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.ccoding.identitycore.IdentityCore;
 import org.ccoding.identitycore.utils.ColorUtils;
 import org.ccoding.identitycore.utils.MessageUtils;
+import org.ccoding.identitycore.utils.PermissionUtils;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -92,7 +93,7 @@ public class ColorMenu {
 
             Material material = getSafeMaterial(color.getMaterial(), Material.WHITE_WOOL);
 
-            if (ColorUtils.hasColorPermission(player, getKeyFromColorData(color))) {
+            if (PermissionUtils.hasColorPermission(player, getKeyFromColorData(color))) {
                 ItemStack colorItem = createItem(material,
                         color.getCode() + color.getName(),
                         Arrays.asList("&7Código: " + color.getCode(),
@@ -121,7 +122,7 @@ public class ColorMenu {
         for (ColorUtils.ColorData format : ColorUtils.FORMATS.values()) {
             if (slot > 43) break;
 
-            if (ColorUtils.hasFormatPermission(player, getKeyFromFormatData(format))) {
+            if (PermissionUtils.hasFormatPermission(player, getKeyFromFormatData(format))) {
                 ItemStack formatItem = createItem(Material.PAPER,
                         format.getCode() + format.getName(),
                         Arrays.asList("&7Código: " + format.getCode(),
@@ -157,7 +158,7 @@ public class ColorMenu {
      * Configura el botón de editor avanzado
      */
     private void setupAdvancedButton(Inventory menu) {
-        if (player.hasPermission("identitycore.advanced")) {
+        if (PermissionUtils.canUseAdvancedMenu(player)) {
             ItemStack advancedBtn = createItem(Material.WRITABLE_BOOK, "&6Editor Avanzado",
                     Arrays.asList("&7Haz click para abrir",
                             "&7el editor avanzado",
