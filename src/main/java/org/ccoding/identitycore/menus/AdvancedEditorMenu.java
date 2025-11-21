@@ -66,19 +66,36 @@ public class AdvancedEditorMenu {
         // Ítem de instrucciones actualizado
         ItemStack instructions = createItem(Material.BOOK,
                 "&6Instrucciones",
-                Arrays.asList("&e1. &7Click en 'Editar Colores en Chat'",
-                        "&e2. &7Escribe tu nick con códigos de color",
-                        "&e3. &7Usa & para colores: &a&aV&b&be&c&cr&d&dd&e&ee",
-                        "&e4. &7Click en 'Aplicar Cambios' para guardar"));
+                Arrays.asList("&e1. &7Copia tu nombre EXACTO actual:",
+                        "&7   • Si usaste &f/nick <nombre>&7:",
+                        "&7     copia ese mismo nombre que pusiste",
+                        "&7   • Si NO usaste &f/nick&7:",
+                        "&7     copia tu nombre real de Minecraft",
+                        "&e2. &7Click en 'Editar Colores en Chat'",
+                        "&e3. &7Pega tu nombre en el chat y añade los colores",
+                        "&7   Ejemplo: &n&eccoding",
+                        "&e4. &7Click en 'Aplicar Cambios'",
+                        "",
+                        "&c✖ &7Para cancelar escribe: &fcancelar"));
         menu.setItem(31, instructions);
     }
 
     private void setupControls(Inventory menu) {
         ItemStack editBtn = createItem(Material.WRITABLE_BOOK,
-                "&eEditar Colores en Chat",
-                Arrays.asList("&7Abre el chat para escribir",
-                        "&7códigos de color directamente",
-                        "&7Ejemplo: &a&aPe&b&bpe&c&c12"));
+                "&eEditar Formatos en Chat",
+                Arrays.asList("&7Abre el chat para aplicar formatos",
+                        "&7a tu nombre actual",
+                        "",
+                        "&eFormatos disponibles:",
+                        "&l&lL &7- Negrita (&l&lTexto&r)",
+                        "&n&nN &7- Subrayado (&n&nTexto&r)",
+                        "&o&oO &7- Itálica (&o&oTexto&r)",
+                        "&m&M &7- Tachado (&m&mTexto&r)",
+                        "&k&kK &7- Mágico (&k&kTexto&r)",
+                        "",
+                        "&7Ejemplo: &l&6Pe&n&6pe&o&612",
+                        "",
+                        "&c✖ &7Escribe &fcancelar &7para salir"));
         menu.setItem(29, editBtn);
 
         ItemStack applyBtn = createItem(Material.LIME_DYE,

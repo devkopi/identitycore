@@ -3,6 +3,7 @@
     import org.bukkit.command.Command;
     import org.bukkit.command.CommandExecutor;
     import org.bukkit.command.CommandSender;
+    import org.bukkit.command.TabCompleter;
     import org.bukkit.entity.Player;
     import org.ccoding.identitycore.IdentityCore;
     import org.ccoding.identitycore.menus.ColorMenu;
@@ -15,7 +16,10 @@
     import org.ccoding.identitycore.menus.AdvancedEditorMenu;
     import org.ccoding.identitycore.listeners.AdvancedEditorListener;
 
-    public class NickCommand implements CommandExecutor {
+    import java.util.ArrayList;
+    import java.util.List;
+
+    public class NickCommand implements CommandExecutor, TabCompleter {
 
         @Override
         public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, @NotNull String[] args) {
@@ -154,5 +158,32 @@
 
         private boolean isValidNick(String nick) {
             return nick.matches("[a-zA-Z0-9_]+");
+        }
+
+        @Override
+        public List<String> onTabComplete(@NotNull CommandSender sender, @NotNull Command command, @NotNull String alias, @NotNull String[] args) {
+            List<String> suggestions = new ArrayList<>();
+
+            if (!(sender instanceof Player)) return suggestions;
+
+            Player player = (Player) sender;
+            if (!PermissionUtils.canUseNick(player)) return suggestions;
+
+            if (args.length == 1) {
+                String partial = args[0].toLowerCase();
+
+                if ("help".startsWith(partial)) suggestions.add("help");
+                if ("restore".startsWith(partial)) suggestions.add("restore");
+
+                if (PermissionUtils.canUseBasicMenu(player) && "settings".startsWith(partial)) {
+                    suggestions.add("settings");
+                }
+
+                if (PermissionUtils.canUseAdvancedMenu(player) && "advanced".startsWith(partial)) {
+                    suggestions.add("advanced");
+                }
+            }
+
+            return suggestions;
         }
     }
