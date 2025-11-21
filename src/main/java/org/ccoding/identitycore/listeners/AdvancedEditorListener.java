@@ -53,9 +53,6 @@ public class AdvancedEditorListener implements Listener {
         // Botón Volver
         if (slot == 49) {
             player.closeInventory();
-            org.ccoding.identitycore.menus.ColorMenu colorMenu =
-                    new org.ccoding.identitycore.menus.ColorMenu(player);
-            colorMenu.openColorMenu();
             return;
         }
 

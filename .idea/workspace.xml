@@ -6,11 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="dd96c2b8-1f52-4ad5-a49e-6fd212f17688" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/commands/IdentityCoreCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/commands/IdentityCoreCommand.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/commands/NickCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/commands/NickCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/listeners/AdvancedEditorListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/listeners/AdvancedEditorListener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/menus/AdvancedEditorMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/menus/AdvancedEditorMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/menus/ColorMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/menus/ColorMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/config.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/plugin.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/plugin.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,8 +57,8 @@
               <option name="branches">
                 <list>
                   <RecentBranch>
-                    <option name="branchName" value="feature/permission-system" />
-                    <option name="lastUsedInstant" value="1763613820" />
+                    <option name="branchName" value="feature/tab-completer" />
+                    <option name="lastUsedInstant" value="1763693481" />
                   </RecentBranch>
                   <RecentBranch>
                     <option name="branchName" value="main" />
@@ -97,11 +96,12 @@
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/permission-system&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/tab-completer&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/santi/IdeaProjects/IdentityCore&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;
   }
 }</component>
