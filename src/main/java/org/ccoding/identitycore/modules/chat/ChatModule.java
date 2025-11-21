@@ -1,5 +1,6 @@
 package org.ccoding.identitycore.modules.chat;
 
+import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.ccoding.identitycore.modules.Module;
 import org.ccoding.identitycore.IdentityCore;
 import org.ccoding.identitycore.utils.MessageUtils;
@@ -50,8 +51,8 @@ public class ChatModule implements Module, Listener {
             Component originalMessage = event.message();
             String messageText = PlainTextComponentSerializer.plainText().serialize(originalMessage);
 
-            String formattedChat = "&7<&f" + displayName + "&7> &f" + messageText;
-            Component formattedComponent = Component.text(MessageUtils.formatColors(formattedChat));
+            String formattedChat = "&f<" + displayName + "&f> &f" + messageText;
+            Component formattedComponent = LegacyComponentSerializer.legacyAmpersand().deserialize(formattedChat);
 
             event.renderer((source, sourceDisplayName, message, viewer) -> formattedComponent);
         }
