@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="dd96c2b8-1f52-4ad5-a49e-6fd212f17688" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/commands/IdentityCoreCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/commands/IdentityCoreCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/commands/NickCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/commands/NickCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/listeners/AdvancedEditorListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/listeners/AdvancedEditorListener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/menus/AdvancedEditorMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/ccoding/identitycore/menus/AdvancedEditorMenu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +92,7 @@
     &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/tab-completer&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
