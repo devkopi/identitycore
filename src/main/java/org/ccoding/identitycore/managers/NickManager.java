@@ -4,6 +4,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.ccoding.identitycore.IdentityCore;
+import org.ccoding.identitycore.models.PlayerData;
+import org.ccoding.identitycore.utils.MessageUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,20 +15,13 @@ import java.util.UUID;
 public class NickManager {
 
     private final IdentityCore plugin;
-    private final HashMap<UUID, String> originalNames;
-    private final HashMap<UUID, String> currentNicks;
-    // HashMap para guardar configuraciones de color
-    private final HashMap<UUID, String> playerColors;
-    private final HashMap<UUID, String> playerFormats;
+    private final HashMap<UUID, PlayerData> playerDataMap;
     private File dataFile;
     private FileConfiguration dataConfig;
 
     public NickManager(IdentityCore plugin) {
         this.plugin = plugin;
-        this.originalNames = new HashMap<>();
-        this.currentNicks = new HashMap<>();
-        this.playerColors = new HashMap<>();
-        this.playerFormats = new HashMap<>();
+        this.playerDataMap = new HashMap<>();
         setupDataFile();
         loadAllData();
     }
@@ -50,16 +45,11 @@ public class NickManager {
                 String playerFormat = dataConfig.getString("players." + uuidString + ".format");
 
                 if (originalName != null) {
-                    originalNames.put(uuid, originalName);
-                }
-                if (currentNick != null) {
-                    currentNicks.put(uuid, currentNick);
-                }
-                if (playerColor != null) {
-                    playerColors.put(uuid, playerColor);
-                }
-                if (playerFormat != null) {
-                    playerFormats.put(uuid, playerFormat);
+                    PlayerData data = new PlayerData(uuid, originalName);
+                    if (currentNick != null) data.setCurrentNick(currentNick);
+                    if (playerColor != null) data.setColorCode(playerColor);
+                    if (playerFormat != null) data.setFormatCode(playerFormat);
+                    playerDataMap.put(uuid, data);
                 }
             }
         }
@@ -67,43 +57,41 @@ public class NickManager {
 
     public void setNick(Player player, String nick) {
         UUID uuid = player.getUniqueId();
-
-        if (!originalNames.containsKey(uuid)) {
-            originalNames.put(uuid, player.getName());
-        }
-
-        currentNicks.put(uuid, nick);
+        PlayerData data = getOrCreatePlayerData(player);
+        data.setCurrentNick(nick);
         savePlayerData(uuid);
     }
 
     public void restoreOriginalName(Player player) {
         UUID uuid = player.getUniqueId();
-
-        if (hasNick(player)) {
-            currentNicks.remove(uuid);
-            playerColors.remove(uuid);
-            playerFormats.remove(uuid);
+        PlayerData data = playerDataMap.get(uuid);
+        if (data != null) {
+            data.setCurrentNick(data.getOriginalName());
+            data.setColorCode(null);
+            data.setFormatCode(null);
+            data.setAdvancedNick(null);
             savePlayerData(uuid);
         }
     }
 
     public String getDisplayName(Player player) {
-        UUID uuid = player.getUniqueId();
-        return currentNicks.getOrDefault(uuid, player.getName());
+        PlayerData data = playerDataMap.get(player.getUniqueId());
+        return data != null ? data.getCurrentNick() : player.getName();
     }
 
     public String getOriginalName(Player player) {
-        UUID uuid = player.getUniqueId();
-        return originalNames.getOrDefault(uuid, player.getName());
+        PlayerData data = playerDataMap.get(player.getUniqueId());
+        return data != null ? data.getOriginalName() : player.getName();
     }
 
     public String getCurrentNick(Player player) {
-        UUID uuid = player.getUniqueId();
-        return currentNicks.get(uuid);
+        PlayerData data = playerDataMap.get(player.getUniqueId());
+        return data != null ? data.getCurrentNick() : null;
     }
 
     public boolean hasNick(Player player) {
-        return currentNicks.containsKey(player.getUniqueId());
+        PlayerData data = playerDataMap.get(player.getUniqueId());
+        return data != null && !data.getCurrentNick().equals(data.getOriginalName());
     }
 
     public void loadPlayerData(Player player) {
@@ -117,115 +105,110 @@ public class NickManager {
             String playerFormat = dataConfig.getString("players." + uuidString + ".format");
 
             if (originalName != null) {
-                originalNames.put(uuid, originalName);
-            }
-            if (currentNick != null) {
-                currentNicks.put(uuid, currentNick);
-            }
-            if (playerColor != null) {
-                playerColors.put(uuid, playerColor);
-            }
-            if (playerFormat != null) {
-                playerFormats.put(uuid, playerFormat);
+                PlayerData data = new PlayerData(uuid, originalName);
+                if (currentNick != null) data.setCurrentNick(currentNick);
+                if (playerColor != null) data.setColorCode(playerColor);
+                if (playerFormat != null) data.setFormatCode(playerFormat);
+                playerDataMap.put(uuid, data);
             }
         }
     }
 
     // Aplicar configuración de color al nick
     public void applyColorConfig(Player player, String color, String format) {
-        UUID uuid = player.getUniqueId();
-
-        // Guardar configuraciones
-        if (color != null) {
-            playerColors.put(uuid, color);
-        }
-        if (format != null) {
-            playerFormats.put(uuid, format);
-        }
-
-        savePlayerData(uuid);
+        PlayerData data = getOrCreatePlayerData(player);
+        if (color != null) data.setColorCode(color);
+        if (format != null) data.setFormatCode(format);
+        savePlayerData(player.getUniqueId());
     }
 
 
     // Obtener nick con colores aplicados (funciona para ambos sistemas)
     public String getColoredDisplayName(Player player) {
-        UUID uuid = player.getUniqueId();
-        String baseNick = currentNicks.getOrDefault(uuid, player.getName());
+        PlayerData data = playerDataMap.get(player.getUniqueId());
+        if (data == null) return player.getName();
 
-        // PRIMERO: Si el nick tiene códigos & (editor avanzado), procesarlos
+        String baseNick = data.getCurrentNick();
+
+        // Si el nick tiene códigos & (editor avanzado), procesarlos
         if (baseNick != null && baseNick.contains("&")) {
-            return org.ccoding.identitycore.utils.MessageUtils.formatColors(baseNick);
+            return MessageUtils.formatColors(baseNick);
         }
 
-        // SEGUNDO: Si no, aplicar color único (sistema normal)
-        String color = playerColors.get(uuid);
-        String format = playerFormats.get(uuid);
+        // Si no, aplicar color único (sistema normal)
+        String color = data.getColorCode();
+        String format = data.getFormatCode();
 
         if (color != null || format != null) {
             String coloredNick = (color != null ? color : "") + (format != null ? format : "") + baseNick;
-            return org.ccoding.identitycore.utils.MessageUtils.formatColors(coloredNick);
+            return MessageUtils.formatColors(coloredNick);
         }
 
-        // TERCERO: Si no hay nada, devolver base sin formato
+        // Si no hay nada, devolver base sin formato
         return baseNick;
     }
 
     // Obtener la configuración de color del jugador
     public String getPlayerColor(Player player) {
-        return playerColors.get(player.getUniqueId());
+        PlayerData data = playerDataMap.get(player.getUniqueId());
+        return data != null ? data.getColorCode() : null;
     }
 
     // Obtener la configuración de formato del jugador
     public String getPlayerFormat(Player player) {
-        return playerFormats.get(player.getUniqueId());
+        PlayerData data = playerDataMap.get(player.getUniqueId());
+        return data != null ? data.getFormatCode() : null;
     }
 
     /**
      * Guarda un nick con códigos de color avanzados
      */
     public void setAdvancedNick(Player player, String coloredNick) {
+        PlayerData data = getOrCreatePlayerData(player);
+        data.setAdvancedNick(coloredNick);
+        data.setCurrentNick(coloredNick);
+        savePlayerData(player.getUniqueId());
+    }
+
+    private PlayerData getOrCreatePlayerData(Player player) {
         UUID uuid = player.getUniqueId();
-
-        if (!originalNames.containsKey(uuid)) {
-            originalNames.put(uuid, player.getName());
+        PlayerData data = playerDataMap.get(uuid);
+        if (data == null) {
+            data = new PlayerData(uuid, player.getName());
+            playerDataMap.put(uuid, data);
         }
-
-        // Guardar el nick con códigos de color incluidos
-        currentNicks.put(uuid, coloredNick);
-        savePlayerData(uuid);
+        return data;
     }
 
     public HashMap<UUID, String> getPlayerColors() {
-        return playerColors;
+        HashMap<UUID, String> colors = new HashMap<>();
+        for (PlayerData data : playerDataMap.values()) {
+            if (data.getColorCode() != null) {
+                colors.put(data.getPlayerId(), data.getColorCode());
+            }
+        }
+        return colors;
     }
 
     public HashMap<UUID, String> getPlayerFormats() {
-        return playerFormats;
+       HashMap<UUID, String> formats = new HashMap<>();
+       for (PlayerData data : playerDataMap.values()) {
+           if (data.getFormatCode() != null) {
+               formats.put(data.getPlayerId(), data.getFormatCode());
+           }
+       }
+       return formats;
     }
 
     private void savePlayerData(UUID uuid) {
         String uuidString = uuid.toString();
+        PlayerData data = playerDataMap.get(uuid);
 
-        if (originalNames.containsKey(uuid)) {
-            dataConfig.set("players." + uuidString + ".originalName", originalNames.get(uuid));
-        }
-
-        if (currentNicks.containsKey(uuid)) {
-            dataConfig.set("players." + uuidString + ".currentNick", currentNicks.get(uuid));
-        } else {
-            dataConfig.set("players." + uuidString + ".currentNick", null);
-        }
-
-        if (playerColors.containsKey(uuid)) {
-            dataConfig.set("players." + uuidString + ".color", playerColors.get(uuid));
-        } else {
-            dataConfig.set("players." + uuidString + ".color", null);
-        }
-
-        if (playerFormats.containsKey(uuid)) {
-            dataConfig.set("players." + uuidString + ".format", playerFormats.get(uuid));
-        } else {
-            dataConfig.set("players." + uuidString + ".format", null);
+        if (data != null) {
+            dataConfig.set("players." + uuidString + ".originalName", data.getOriginalName());
+            dataConfig.set("players." + uuidString + ".currentNick", data.getCurrentNick());
+            dataConfig.set("players." + uuidString + ".color", data.getColorCode());
+            dataConfig.set("players." + uuidString + ".format", data.getFormatCode());
         }
 
         saveDataFile();
